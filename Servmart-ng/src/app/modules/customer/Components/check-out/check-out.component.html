@@ -1,0 +1,231 @@
+<div class="row">
+	<div class="d-flex justify-content-between mb-4">
+		<h4 class="card-header-title">إتمام عملية الشراء</h4>
+		<div class="d-flex gap-2">
+			<button class="btn btn-danger-soft" (click)="cansel()">
+				<i class="fa-duotone fa-trash"></i>
+				الغاء
+			</button>
+		</div>
+	</div>
+</div>
+
+<div class="row m-0 p-0">
+
+
+	<!-- Accordion -->
+	<div class="col-lg-7 col-md-12">
+		<hr class="mt-0">
+		<div class="accordion accordion-flush" id="accordionFlushExample">
+			<form class="row g-3" [formGroup]="vaildition" (ngSubmit)="show()">
+				<div class="accordion-item py-4">
+
+					<div class="d-flex justify-content-between align-items-center">
+						<a href="#" class="fs-5 fw-medium text-inherit mb-4 d-flex align-items-center gap-3" data-bs-toggle="collapse"
+							data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+							<i class="fa-duotone fa-location-dot"></i>
+							اضف العنوان
+						</a>
+						<!--
+                                        <a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#addAddressModal">Add a new address </a>
+                                        -->
+					</div>
+
+					<div id="flush-collapseOne" class="accordion-collapse collapse show"
+						data-bs-parent="#accordionFlushExample">
+						<div class="row m-0 p-0">
+							<div class="row p-0 m-0 mb-3">
+								<div class="col-md-6">
+									<div class="form-floating">
+										<select (change)="getCities($event)" class="form-select" formControlName="GovernorateId" id="governorate"
+											aria-label="Default select example">
+											<option selected>اختر المحافظة</option>
+											<option *ngFor="let item of GovernoratesList" [value]="item.id">{{item.nameAr}}
+											</option>
+										</select>
+
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-floating">
+										<select class="form-select" formControlName="CityId" id="City"
+											aria-label="Default select example">
+											<option selected>اختر المركز</option>
+											<option *ngFor="let item of CitiesList" [value]="item.id">{{item.nameAr}}</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="row p-0 m-0 mb-3">
+								<div class="col-12">
+									<div class="form-floating">
+										<input type="text" formControlName="Address" class="form-control"
+											id="inputAddress" placeholder="محافظة اسوان طريق السادات ">
+										<label for="inputAddress" class="form-label">العنوان</label>
+									</div>
+								</div>
+							</div>
+
+							<div class="mt-5 d-flex justify-content-end gap-4">
+								<a href="#" class="btn btn-primary-soft ms-2 collapsed" data-bs-toggle="collapse"
+									data-bs-target="#flush-collapseTwo" aria-expanded="false"
+									aria-controls="flush-collapseTwo">التالي</a>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+				<!-- item 2 -->
+				<div class="accordion-item py-4">
+
+					<a href="#" class="fs-5 fw-medium text-inherit mb-4 d-flex align-items-center gap-3" data-bs-toggle="collapse"
+						data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+						<i class="fa-duotone fa-circle-info"></i>
+						تفاصيل الخدمة
+					</a>
+
+					<div id="flush-collapseTwo" class="accordion-collapse collapse"
+						data-bs-parent="#accordionFlushExample">
+						<div class="mt-5">
+							<label for="DeliveryInstructions" class="form-label sr-only">
+								تفاصيل الخدمة</label>
+							<textarea class="form-control" formControlName="Details" id="DeliveryInstructions" rows="3"
+								placeholder="تفاصبل اخري"></textarea>
+							<p class="form-text">أضف تعليمات حول الطريقة التي تريد بها استلام طلبك
+							</p>
+							<div class="mt-5 d-flex justify-content-end gap-4">
+								<a href="#" class="btn btn-secondary-soft collapsed" data-bs-toggle="collapse"
+									data-bs-target="#flush-collapseOne" aria-expanded="false"
+									aria-controls="flush-collapseOne">السابق</a>
+								<a href="#" class="btn btn-primary-soft ms-2 collapsed" data-bs-toggle="collapse"
+									data-bs-target="#flush-collapseThree" aria-expanded="false"
+									aria-controls="flush-collapseThree">التالي</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- item 3 -->
+				<div class="accordion-item py-4">
+
+					<a href="#" class="fs-5 fw-medium text-inherit mb-4 d-flex align-items-center gap-3" data-bs-toggle="collapse"
+						data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+						<i class="fa-duotone fa-money-check-dollar"></i>
+						طريقة الدفع
+					</a>
+
+					<div id="flush-collapseThree" class="accordion-collapse collapse"
+						data-bs-parent="#accordionFlushExample">
+						<div class="mt-5">
+							<div>
+								<!-- Delivery -->
+								<div class="card card-bordered shadow-none">
+									<div class="card-body p-6">
+										<!-- check input -->
+										<div class="d-flex">
+											<div>
+												<!-- title -->
+												<h5 class="mb-1 h6">الدفع كاش</h5>
+												<p class="mb-0 small">
+													ادفع بمجرد الانتهاء من عمل الخدمة</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Button -->
+								<div class="mt-5 d-flex justify-content-end gap-4">
+									<a href="#" class="btn btn-secondary-soft collapsed" data-bs-toggle="collapse"
+										data-bs-target="#flush-collapseTwo" aria-expanded="false"
+										aria-controls="flush-collapseTwo">السابق</a>
+									<button class="btn btn-primary-soft ms-2" type="submit" [disabled]="vaildition.invalid">
+										ارسل الطلب</button>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- Order Details -->
+	<div class="col-12 col-md-12 col-lg-5">
+		<div class="mt-4 mt-lg-0">
+			<div class="card">
+
+				<div class="card-header border-0 pb-0">
+					<h5 class="">تفاصيل الطلب</h5>
+				</div>
+
+				<div class="card-body pb-0">
+
+					<ul class="list-group list-group-flush border rounded p-0 mb-3">
+						<!-- list group item -->
+						<li class="list-group-item" *ngFor="let item of GetCart">
+							<div class="row align-items-center">
+								<div class="col-3">
+									<img [src]="item.picURL" alt="Ecommerce"
+										class="img-fluid rounded">
+								</div>
+								<div class="col-5">
+									<h6 class="mb-0 text-truncate">{{item.productName}}</h6>
+								</div>
+								<div class="col-1 text-center">
+									<span>{{item.count}}</span>
+								</div>
+								<div class="col-3 text-lg-end text-start text-md-end">
+									<span class="fw-bold">{{item.unitPrice | CustomCurrency:'ar':false}}</span>
+								</div>
+							</div>
+
+						</li>
+						<!-- list group item -->
+
+
+					</ul>
+
+					<!-- list group item -->
+					<ul class="list-group list-group-flush border rounded p-0 mb-3">
+						<!-- list group item -->
+						<li class="list-group-item px-4 py-3">
+							<div class="d-flex align-items-center justify-content-between   mb-2">
+								<div>
+									اجمالي السلع
+								</div>
+								<div class="fw-bold">
+									{{getTotal()| CustomCurrency:'ar':false}}
+								</div>
+
+							</div>
+							<div class="d-flex align-items-center justify-content-between  ">
+								<div>
+									رسوم الخدمة
+									<!-- <i class="fa-duotone fa-circle-info"></i> -->
+								</div>
+								<div class="fw-bold">
+									{{3 | CustomCurrency:'ar':false}}
+								</div>
+
+							</div>
+
+						</li>
+						<li class="list-group-item px-4 py-3">
+							<div class="d-flex align-items-center justify-content-between fw-bold">
+								<div>إجمالي المبلغ</div>
+								<div class="text-primary">{{getTotal()+3 | CustomCurrency:'ar':false}}</div>
+							</div>
+						</li>
+
+					</ul>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div>

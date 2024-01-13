@@ -1,0 +1,113 @@
+<div class="col-lg-10 fs">
+	<div class="page-content mb-5 m-0">
+		<div class="flex-grow">
+			<div class="container mt-2">
+
+				<form [formGroup]="serviceForm" (ngSubmit)="onSubmitForm()" class="d-flex flex-column gap-2 mb-3">
+
+					<div class="d-flex justify-content-between align-items-center mb-4">
+						<h3>إضافة خدمة</h3>
+
+						<button class="btn btn-primary-soft d-flex flex-row gap-2" type="submit"
+							[ngClass]="isSubmitted? 'disabled':''">
+							<span *ngIf="!isSubmitted">إضافة</span>
+							<span *ngIf="isSubmitted">جاري الإضافة</span>
+							<i class="fa-duotone fa-spinner-third fa-spin" *ngIf="isSubmitted"></i>
+						</button>
+					</div>
+
+					<div class="mb-3">
+						<label for="ServiceTitle" class="form-label">اسم الخدمة</label>
+						<input formControlName="ServiceTitle" class="form-control" type="text" id="ServiceTitle"
+							[ngClass]="{'is-invalid': serviceForm.get('ServiceTitle').touched && serviceForm.get('ServiceTitle').invalid}">
+						<span
+							*ngIf="serviceForm.get('ServiceTitle').touched && serviceForm.get('ServiceTitle').hasError('required')"
+							class="invalid-feedback">
+							اسم الخدمة مطلوب
+						</span>
+					</div>
+
+					<div class="mb-3">
+
+						<label for="CategoryID" class="form-label">نوع الخدمة</label>
+						<select class="form-select" name="CategoryID" id="CategoryID" formControlName="CategoryID"
+							[ngClass]="{'is-invalid': serviceForm.get('CategoryID').touched && serviceForm.get('CategoryID').invalid}">
+							<option selected disabled>-اختر-</option>
+							<option *ngFor="let item of CategoriesList" [value]="item.id">{{item.nameAr}}</option>
+						</select>
+
+						<span
+							*ngIf="serviceForm.get('CategoryID').touched && serviceForm.get('CategoryID').hasError('required')"
+							class="invalid-feedback">
+							نوع الخدمة مطلوب
+						</span>
+
+					</div>
+
+					<div class="mb-3">
+						<label for="ExpectedSalary" class="form-label">متوسط سعر الخدمة</label>
+						<input formControlName="ExpectedSalary" class="form-control" type="number" min="1" step="any"
+							id="ExpectedSalary"
+							[ngClass]="{'is-invalid': serviceForm.get('ExpectedSalary').touched && serviceForm.get('ExpectedSalary').invalid}">
+						<span
+							*ngIf="serviceForm.get('ExpectedSalary').touched && serviceForm.get('ExpectedSalary').hasError('required')"
+							class="invalid-feedback">
+							متوسط سعر الخدمة مطلوب
+						</span>
+					</div>
+
+					<div class="mb-3">
+
+						<label for="Description" class="form-label">وصف الخدمة</label>
+						<textarea formControlName="Description" class="form-control textarea" name="Description"
+							id="Description" rows="5" autoresize="none" (input)="onTextareaChange($event)"
+							[ngClass]="{'is-invalid': serviceForm.get('Description').touched && serviceForm.get('Description').invalid}"></textarea>
+						<p> عدد الأحرف: {{ maxCharacters }} / {{ currentCharacterCount }} </p>
+						<span
+							*ngIf="serviceForm.get('Description').touched && serviceForm.get('Description').hasError('required')"
+							class="invalid-feedback">
+							وصف الخدمة مطلوب
+						</span>
+
+					</div>
+
+					<div class="mb-3">
+
+						<div *ngIf="selectedImages.length == 0"
+							class="FileContainer text-center w-100 d-flex flex-column mb-3 btn btn-primary-soft">
+							<label class="mt-2" for="ServicePic">إضافة صور للخدمة بحد أقصي 5 صور</label>
+							<input formControlName="ServicePic" class="d-none" id="ServicePic" type="file"
+								accept="image/*" multiple (change)="onImagesSelected($event)"
+								[ngClass]="{'is-invalid': serviceForm.get('ServicePic').touched && serviceForm.get('ServicePic').invalid}">
+						</div>
+
+						<span
+							*ngIf="serviceForm.get('ServicePic').touched && serviceForm.get('ServicePic').hasError('required')"
+							class="invalid-feedback mb-3">
+							صورة الخدمة مطلوبة
+						</span>
+
+						<div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="imagesError">
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+							يمكنك ان تضيف صور للخدمة بحد أقصي 5 صور
+						</div>
+
+						<div *ngIf="selectedImages.length != 0">
+							<div class="d-flex flex-row gap-2">
+								<div *ngFor="let image of selectedImages; let i = index"
+									class="avatar avatar-xxl text-center">
+									<img [src]="image.url" class="img-thumbnail avatar-img mb-2" alt="">
+									<button class=" btn btn-danger-soft" (click)="removeImage(i)">حذف</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+</div>

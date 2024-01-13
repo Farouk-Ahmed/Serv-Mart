@@ -1,0 +1,31 @@
+<!-- <div class="pb-9 pb-lg-4"> -->
+<div class="pb-4 pb-lg-2">
+
+	<app-header></app-header>
+
+	<!-- Content -->
+	<div class="container-fluid px-xxl-5 mt-5">
+		<div class="row justify-center">
+
+			<!-- Sidebar  -->
+			<app-sidebar class="col-lg-2 d-none d-lg-inline full-sidebar sticky-top z-0" *ngIf="user"></app-sidebar>
+
+			<!-- Main content -->
+			<div class="col-lg-10">
+
+				<div class="page-content mb-2 m-0 w-100">
+					<router-outlet></router-outlet>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<!-- footer -->
+
+
+	<!-- Sidebar for small screens -->
+	<app-BottomSidebar></app-BottomSidebar>
+
+</div>

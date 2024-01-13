@@ -1,0 +1,128 @@
+<div class="card bg-light w-100 sticky-top top-1">
+	<!-- Sidebar Content -->
+	<div class="card-body p-3">
+		<!-- Avatar -->
+		<div class="text-center mb-3 d-flex justify-content-center flex-column align-items-center text-truncate">
+			<div class="mb-2">
+				<img class="avatar-img rounded-circle border border-2 border-white d-none d-sm-flex w-100"
+					[src]="user.profilePic" alt="{{user.userName}} profile picture" title="{{user.userName}}">
+			</div>
+			<a href="#" class="text-reset text-primary-hover small line-clamp-1 d-none d-xl-inline">
+				<h6 class="mb-0 d-none d-xl-inline" dir="auto">{{userFullName}}</h6>
+			</a>
+			<a href="#" class="text-reset text-primary-hover small line-clamp-1 d-none d-xl-inline">
+				{{user.email}}
+			</a>
+			<hr>
+		</div>
+
+		<!-- Sidebar menu item -->
+		<ul class="nav nav-pills-primary-soft flex-column p-0">
+			<li class="nav-item">
+				<a class="nav-link justify-content-center justify-content-xl-start" href="#"
+					[routerLink]="['/addRequest']" routerLinkActive="active">
+					<i class="fa-duotone fa-square-question text-xl 2xl:text-base"></i>
+					<span class="d-none d-xl-inline">أضف طلب</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link justify-content-center justify-content-xl-start" href="#" [routerLink]="['/cart']"
+					routerLinkActive="active">
+					<i class="fa-duotone fa-cart-shopping text-xl 2xl:text-base"></i>
+					<span class="d-none d-xl-inline">عربة التسوق</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link justify-content-center justify-content-xl-start btn-toggle" href="#"
+					data-bs-toggle="collapse" data-bs-target="#customerRequests" aria-expanded="false"
+					aria-controls="customerRequests" routerLinkActive="active"
+					[routerLinkActiveOptions]="{exact: true}">
+					<i class="fa-duotone fa-ticket text-xl 2xl:text-base"></i>
+					<span class="d-none d-xl-inline">طلباتي</span>
+				</a>
+				<div id="customerRequests" class="collapse p-2" data-bs-parent="#sideNavbar">
+					<ul class="nav flex-column list-group pe-0 pe-xl-4">
+						<li class="nav-item">
+							<a class="nav-link with-dot" href="#" [routerLink]="['myOrders']" routerLinkActive="active">
+								المنتجات
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link with-dot" href="#" [routerLink]="['myRequests']"
+								routerLinkActive="active">
+								الخدمات
+							</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+			<li class="nav-item" *ngIf="isUserLoggedInServiceProvider">
+				<a class="nav-link justify-content-center justify-content-xl-start btn-toggle" href="#"
+					data-bs-toggle="collapse" data-bs-target="#serviceProvider" aria-expanded="false"
+					aria-controls="serviceProvider" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+					<i class="fa-duotone fa-bolt"></i>
+					<span class="d-none d-xl-inline">الخدمات</span>
+				</a>
+				<div id="serviceProvider" class="collapse p-2" data-bs-parent="#sideNavbar">
+					<ul class="nav flex-column list-group pe-0 pe-xl-4">
+						<li class="nav-item">
+							<a class="nav-link with-dot" href="#" routerLinkActive="active"
+								[routerLink]="['/AddService']">
+								إضافة خدمة
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link with-dot" href="#" routerLinkActive="active"
+								[routerLink]="['/myServices']">
+								خدماتي
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link with-dot" href="#" routerLinkActive="active"
+								[routerLink]="['/proposals']">
+								عروضي
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link with-dot" href="#" routerLinkActive="active"
+								[routerLink]="['/requestsOrders']">
+								الطلبات
+							</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+			<li class="nav-item" *ngIf="isUserLoggedInVendor">
+				<a class="nav-link justify-content-center justify-content-xl-start btn-toggle" href="#"
+					data-bs-toggle="collapse" data-bs-target="#vendor" aria-expanded="false" aria-controls="vendor"
+					routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+					<i class="fa-duotone fa-store"></i>
+					<span class="d-none d-xl-inline">المتجر</span>
+				</a>
+				<div id="vendor" class="collapse p-2" data-bs-parent="#sideNavbar">
+					<ul class="nav flex-column list-group pe-0 pe-xl-4">
+						<li class="nav-item">
+							<a class="nav-link with-dot" href="#" [routerLink]="['/addProduct']"
+								routerLinkActive="router-link-active">
+								أضف منتج
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link with-dot" href="#" [routerLink]="['/productList']"
+								routerLinkActive="router-link-active">
+								منتجاتي
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link with-dot" href="#" [routerLink]="['/orderList']"
+								routerLinkActive="router-link-active">
+								الطلبات
+							</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+
+	</div>
+</div>
